@@ -15,6 +15,7 @@ import static org.junit.Assert.assertNotNull;
 @DataMongoTest
 public class CategoryReactiveRepositoryTest {
 
+    public static final String FOO = "FOO";
     @Autowired
     CategoryReactiveRepository categoryReactiveRepository;
 
@@ -35,9 +36,9 @@ public class CategoryReactiveRepositoryTest {
     @Test
     public void testFindByDescription() {
         Category category = new Category();
-        category.setDescription("FOO");
+        category.setDescription(FOO);
         categoryReactiveRepository.save(category).block();
-        Category saved = categoryReactiveRepository.findByDescription("FOO").block();
+        Category saved = categoryReactiveRepository.findByDescription(FOO).block();
         assertNotNull(saved.getId());
         assertEquals(saved.getDescription(), category.getDescription());
     }
